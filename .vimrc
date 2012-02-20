@@ -52,9 +52,8 @@
 " Delete all auto commands (needed to auto source .vimrc after saving)
 :autocmd!
 
-" Set new grep command, which ignores SVN!
-" TODO: Add this to SVN
-set grepprg=/usr/bin/vimgrep\ $*\ /dev/null
+let @q=':!clear && fastunit'
+:nnoremap <Space> @q
 
 " Map <F5> to turn spelling on (VIM 7.0+)
 map <F5> :setlocal spell! spelllang=en_us<cr>
@@ -78,12 +77,6 @@ autocmd BufNewFile *.rst 0r ~/.vim/skeleton.txt | normal GddOAOAOAOAOAOAO
 au BufRead,BufNewFile *.php		set indentexpr= | set smartindent
 " }}}
 
-" {{{ .phps files handled like .php
-
-au BufRead,BufNewFile *.phps		set filetype=php
-
-" }}}
-
 " {{{  Settings   
 
 " Use filetype plugins, e.g. for PHP
@@ -94,24 +87,24 @@ filetype indent on
 set ruler
 set laststatus=2
 
-" Set standard setting for PEAR coding standards
 set tabstop=4
 set shiftwidth=4
+set expandtab
 
 " Show line numbers by default
 set number
 
 " Enable folding by fold markers
-set foldmethod=marker 
+"set foldmethod=marker 
 
 " Autoclose folds, when moving out of them
-set foldclose=all
+"set foldclose=all
 
 " Use incremental searching
 set incsearch
 
 " Do not highlight search results
-set nohlsearch
+"set nohlsearch
 
 " Jump 5 lines when running out of the screen
 set scrolljump=5
@@ -125,13 +118,22 @@ set backspace=start,eol,indent
 " Allow file inline modelines to provide settings
 set modeline
 
-" MovingThroughCamelCaseWords
-nnoremap <silent><C-Left>  :<C-u>cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
-nnoremap <silent><C-Right> :<C-u>cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR>
-inoremap <silent><C-Left>  <C-o>:cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
-inoremap <silent><C-Right> <C-o>:cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR> 
-
 " }}}
+
+cmap %/ <C-R>=substitute(expand("%:p:h"), ' ', '\\ ', 'g') . '/'<CR>/<BS>
+cmap $$ <C-R>=substitute(expand("%:p:h"), ' ', '\\ ', 'g') . '/'<CR>/<BS>
+nmap $$ :e <C-R>=substitute(expand("%:p:h"), ' ', '\\ ', 'g') . '/'<CR>/<BS>
+nnoremap <Leader>gu :e <C-R>=substitute(expand("%:p:h"), ' ', '\\ ', 'g') . '/'<CR>/<BS><CR>
+
+syntax enable
+hi Comment ctermfg=gray cterm=none
+hi Directory ctermfg=brown cterm=none
+
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplorerMoreThanOne = 0
+" Visual Buffer Explorer
+"nnoremap <C-B> :BufExplorer<CR>
 
 " Toggle paste with <ins>
 set pastetoggle=<ins>
@@ -150,7 +152,7 @@ set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
 " Colored column (to see line size violations)
-set colorcolumn=80
+set colorcolumn=120
 
 " Show large "menu" with auto completion options
 set wildmenu
