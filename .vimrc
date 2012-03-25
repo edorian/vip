@@ -56,6 +56,8 @@
 " TODO: Add this to SVN
 set grepprg=/usr/bin/vimgrep\ $*\ /dev/null
 
+syntax on
+
 " Map <F5> to turn spelling on (VIM 7.0+)
 map <F5> :setlocal spell! spelllang=en_us<cr>
 " Map <F6> to turn spelling (de) on (VIM 7.0+)
@@ -102,16 +104,16 @@ set shiftwidth=4
 set number
 
 " Enable folding by fold markers
-set foldmethod=marker 
+" set foldmethod=marker 
 
 " Autoclose folds, when moving out of them
-set foldclose=all
+" set foldclose=all
 
 " Use incremental searching
 set incsearch
 
 " Do not highlight search results
-set nohlsearch
+" set nohlsearch
 
 " Jump 5 lines when running out of the screen
 set scrolljump=5
@@ -126,10 +128,10 @@ set backspace=start,eol,indent
 set modeline
 
 " MovingThroughCamelCaseWords
-nnoremap <silent><C-Left>  :<C-u>cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
-nnoremap <silent><C-Right> :<C-u>cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR>
-inoremap <silent><C-Left>  <C-o>:cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
-inoremap <silent><C-Right> <C-o>:cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR> 
+"nnoremap <silent><C-Left>  :<C-u>cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
+"nnoremap <silent><C-Right> :<C-u>cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR>
+"inoremap <silent><C-Left>  <C-o>:cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
+"inoremap <silent><C-Right> <C-o>:cal search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR> 
 
 " }}}
 
@@ -144,13 +146,18 @@ autocmd InsertLeave <buffer> se nopaste
 autocmd bufwritepost .vimrc source $MYVIMRC
 
 " Undo history between sessions
-set undodir=~/.vim/undodir
-set undofile
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+
+if version >= 730
+	set undodir=~/.vim/undodir
+	set undofile
+	set undolevels=1000 "maximum number of changes that can be undone
+	set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+endif
 
 " Colored column (to see line size violations)
-set colorcolumn=80
+if version >= 730
+	set colorcolumn=120
+endif
 
 " Show large "menu" with auto completion options
 set wildmenu

@@ -64,19 +64,19 @@ noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
 " noremap <C-P> :w!<CR>:!php5 %<CR>
 
 " Map <ctrl>+p to single line mode documentation (in insert and command mode)
-inoremap <buffer> <C-P> :call PhpDocSingle()<CR>i
-nnoremap <buffer> <C-P> :call PhpDocSingle()<CR>
+"inoremap <buffer> <C-P> :call PhpDocSingle()<CR>i
+"nnoremap <buffer> <C-P> :call PhpDocSingle()<CR>
 " Map <ctrl>+p to multi line mode documentation (in visual mode)
-vnoremap <buffer> <C-P> :call PhpDocRange()<CR>
+"vnoremap <buffer> <C-P> :call PhpDocRange()<CR>
 
 " Map <CTRL>-H to search phpm for the function name currently under the cursor (insert mode only)
 inoremap <buffer> <C-H> <ESC>:!phpm <C-R>=expand("<cword>")<CR><CR>
 
 " Map <CTRL>-a to alignment function
-vnoremap <buffer> <C-a> :call PhpAlign()<CR>
+"vnoremap <buffer> <C-a> :call PhpAlign()<CR>
 
 " Map <CTRL>-a to (un-)comment function
-vnoremap <buffer> <C-c> :call PhpUnComment()<CR>
+"vnoremap <buffer> <C-c> :call PhpUnComment()<CR>
 
 " }}}
 
@@ -85,19 +85,19 @@ vnoremap <buffer> <C-c> :call PhpUnComment()<CR>
 " More common in PEAR coding standard
 " inoremap <buffer>  { {<CR>}<C-O>O
 " Maybe this way in other coding standards
-inoremap <buffer>  { {<CR>}<C-O>O
+"inoremap <buffer>  { {<CR>}<C-O>O
 
-inoremap <buffer> [ []<LEFT>
+"inoremap <buffer> [ []<LEFT>
 
 " Standard mapping after PEAR coding standard
-inoremap <buffer> ( (  )<LEFT><LEFT>
+"inoremap <buffer> ( (  )<LEFT><LEFT>
 " inoremap <buffer> ( ()<LEFT>
 
 " Maybe this way in other coding standards
 " inoremap ( ( )<LEFT><LEFT> 
 
-inoremap <buffer> " ""<LEFT>
-inoremap <buffer> ' ''<LEFT>
+"inoremap <buffer> " ""<LEFT>
+"inoremap <buffer> ' ''<LEFT>
 
 " }}} Automatic close char mapping
 
